@@ -8,7 +8,7 @@ Proje içi görseller:
 ---
 ![Proje Görsel (3)](https://github.com/8yildirim8/Taban-ve-Sifreleme-Donusumleri-Java-/assets/162705105/fe4bcba0-16f1-4770-a85a-136c2c9f0a34)
 ---
-![Proje Görsel (4)](https://github.com/8yildirim8/Taban-ve-Sifreleme-Donusumleri-Java-/assets/162705105/b45d57f8-d1b6-45ad-9b4a-1e7a70937683)
+![Ekran görüntüsü 2024-05-14 153334](https://github.com/8yildirim8/Taban-ve-Sifreleme-Donusumleri-Java-/assets/162705105/c2dac5ed-6423-494e-a978-1a066d51f2ee)
 ---
-![Proje Görsel (5)](https://github.com/8yildirim8/Taban-ve-Sifreleme-Donusumleri-Java-/assets/162705105/dc0d48fd-f3cf-4698-b442-e8afd6424f2e)
+![Ekran görüntüsü 2024-05-14 153348](https://github.com/8yildirim8/Taban-ve-Sifreleme-Donusumleri-Java-/assets/162705105/6b6f7667-c503-4534-90eb-1378a5c92cb4)
 ---
