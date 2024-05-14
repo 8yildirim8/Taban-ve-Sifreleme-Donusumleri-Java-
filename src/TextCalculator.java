@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class TextCalculator extends JFrame {
     private JButton pageChangeButton;
@@ -23,7 +22,7 @@ public class TextCalculator extends JFrame {
         JLabel inputLabel = new JLabel("Input Type:");
         centerPanel.add(inputLabel);
 
-        JComboBox<String> inputTypeComboBox = new JComboBox<>(new String[]{"AES", "DES", "Hash", "Blowfish"});
+        JComboBox<String> inputTypeComboBox = new JComboBox<>(new String[]{"Text"});
         centerPanel.add(inputTypeComboBox);
 
         JLabel inputTextLabel = new JLabel("Input:");
@@ -51,67 +50,31 @@ public class TextCalculator extends JFrame {
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputType = (String) inputTypeComboBox.getSelectedItem();
                 String outputType = (String) outputTypeComboBox.getSelectedItem();
                 String input = inputText.getText();
                 String output = null;
 
-                switch (inputType) {
-                    case "AES":
-                        switch (outputType) {
-                            case "AES":
-                                output = TextTransform.encryptAES(input, "yourAESKey");
-                                break;
-                            case "DES":
-                                output = TextTransform.encryptDES(TextTransform.decryptAES(input, "yourAESKey"), "yourDESKey");
-                                break;
-                            case "Hash":
-                                output = TextTransform.hash(input, "SHA-256"); // You can choose any hash algorithm
-                                break;
-                            case "Blowfish":
-                                output = TextTransform.encryptBlowfish(input, "yourBlowfishKey");
-                                break;
-                        }
-                        break;
-                    case "DES":
-                        switch (outputType) {
-                            case "AES":
-                                output = TextTransform.encryptAES(TextTransform.decryptDES(input, "yourDESKey"), "yourAESKey");
-                                break;
-                            case "DES":
-                                output = TextTransform.encryptDES(input, "yourDESKey");
-                                break;
-                            case "Hash":
-                                output = TextTransform.hash(input, "SHA-256"); // You can choose any hash algorithm
-                                break;
-                            case "Blowfish":
-                                output = TextTransform.encryptBlowfish(TextTransform.decryptDES(input, "yourDESKey"), "yourBlowfishKey");
-                                break;
-                        }
-                        break;
-                    case "Hash":
-                        // Hash input directly to the selected output type
-                        output = TextTransform.hash(input, outputType);
-                        break;
-                    case "Blowfish":
-                        switch (outputType) {
-                            case "AES":
-                                output = TextTransform.encryptAES(TextTransform.decryptBlowfish(input, "yourBlowfishKey"), "yourAESKey");
-                                break;
-                            case "DES":
-                                output = TextTransform.encryptDES(TextTransform.decryptBlowfish(input, "yourBlowfishKey"), "yourDESKey");
-                                break;
-                            case "Hash":
-                                output = TextTransform.hash(TextTransform.decryptBlowfish(input, "yourBlowfishKey"), "SHA-256"); // Hash decrypted Blowfish output
-                                break;
-                            case "Blowfish":
-                                output = TextTransform.encryptBlowfish(input, "yourBlowfishKey");
-                                break;
-                        }
-                        break;
-                }
+                try {
+                    switch (outputType) {
+                        case "AES":
+                            output = TextTransform.encryptAES(input);
+                            break;
+                        case "DES":
+                            output = TextTransform.encryptDES(input);
+                            break;
+                        case "Hash":
+                            output = TextTransform.sha256Hash(input);
+                            break;
+                        case "Blowfish":
+                            output = TextTransform.encryptBlowfish(input);
+                            break;
+                    }
 
-                outputText.setText(output);
+                    outputText.setText(output);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
